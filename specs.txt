@@ -1,15 +1,104 @@
-# This is the list of thing this web app will do:
+### Blog Platform Requirements:
 
-1. Users can create an account
-2. Users can read, write and delete blogs.
-3. There should be a count of views, likes, etc.
+1. **User Authentication:**
+   - Users should be able to create accounts, log in, and log out.
+   - Implement password hashing for security.
 
-# Nice to have
-1. Tipping
-  - via crypto
-  - via fiat
+2. **Post Management:**
+   - Users should be able to create, edit, and delete blog posts.
+   - Each post should have a title, content, and a publication date.
 
-# Specifications
-1. If they have an account users should be able to like the blog.
-2. For writing blogs there will be an editer built-in the web app.
+3. **User Profiles:**
+   - Users should have profiles displaying their username, bio, and a list of their posts.
+
+4. **Comments:**
+   - Allow users to comment on blog posts.
+   - Include features for editing and deleting comments.
+
+5. **Categories and Tags:**
+   - Implement a categorization system for blog posts (e.g., technology, lifestyle).
+   - Allow users to add tags to their posts for better organization.
+
+6. **Search Functionality:**
+   - Users should be able to search for posts based on keywords, categories, or tags.
+
+7. **Responsive Design:**
+   - Ensure the platform is accessible and looks good on various devices (desktop, tablet, mobile).
+
+8. **Security Measures:**
+   - Protect against common web vulnerabilities (e.g., Cross-Site Scripting, Cross-Site Request Forgery).
+   - Validate and sanitize user inputs to prevent SQL injection.
+
+9. **Pagination:**
+   - Implement pagination for blog posts to improve page loading times.
+
+10. **User-Friendly URL Structure:**
+    - Use clean and descriptive URLs for blog posts and user profiles.
+
+11. **Image Upload:**
+    - Allow users to upload images to include in their blog posts.
+
+12. Tipping
+    - via crypto
+    - via fiat
+
+
+### Development Plan:
+
+1. **Setup:**
+   - Choose a tech stack (e.g., Flask/Django for Python, Express for Node.js, Ruby on Rails).
+   - Set up a version control system (e.g., Git) and a repository for your project.
+
+2. **User Authentication:**
+   - Implement user registration, login, and logout functionalities.
+   - Use a secure authentication method (e.g., bcrypt).
+
+3. **Database Design:**
+   - Design the database schema to store users, posts, comments, categories, and tags.
+   - Choose a database system (e.g., SQLite, PostgreSQL, MongoDB).
+
+4. **Post Management:**
+   - Create views and forms for creating, editing, and deleting blog posts.
+   - Ensure that only authenticated users can create and edit their own posts.
+
+5. **User Profiles:**
+   - Design and implement user profile pages displaying user information and a list of their posts.
+
+6. **Comments:**
+   - Implement a comment system for blog posts.
+   - Include features for editing and deleting comments.
+
+7. **Categories and Tags:**
+   - Create a system for categorizing posts and adding tags.
+   - Implement views to filter posts by categories and tags.
+
+8. **Search Functionality:**
+   - Implement a search feature using keywords, categories, and tags.
+
+9. **Responsive Design:**
+   - Use CSS frameworks (e.g., Bootstrap) to make the platform responsive.
+   - Test and adjust the layout for various screen sizes.
+
+10. **Security Measures:**
+    - Implement security best practices, such as input validation and protection against common web vulnerabilities.
+
+11. **Pagination:**
+    - Implement pagination to display a limited number of posts per page.
+
+12. **User-Friendly URL Structure:**
+    - Configure clean and descriptive URLs for blog posts and user profiles.
+
+13. **Image Upload:**
+    - Allow users to upload images and include them in their blog posts.
+
+14. **Testing:**
+    - Conduct thorough testing to ensure all features work as expected.
+    - Perform security testing to identify and address potential vulnerabilities.
+
+15. **Deployment:**
+    - Choose a hosting provider (e.g., Heroku, AWS, DigitalOcean) and deploy your blog platform.
+    - Configure domain settings if you have a custom domain.
+
+16. **Documentation:**
+    - Document your project, including setup instructions and any specific configuration details
 
