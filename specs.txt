@@ -1,0 +1,15 @@
+# This is the list of thing this web app will do:
+
+1. Users can create an account
+2. Users can read, write and delete blogs.
+3. There should be a count of views, likes, etc.
+
+# Nice to have
+1. Tipping
+  - via crypto
+  - via fiat
+
+# Specifications
+1. If they have an account users should be able to like the blog.
+2. For writing blogs there will be an editer built-in the web app.
+
