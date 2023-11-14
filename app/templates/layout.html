@@ -3,22 +3,47 @@
 <html lang="en">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock %} - Flaskr</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>{% block title %}{% endblock %} - Blogs</title>
+    <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static', filename='bootstrap.bundle.min.js') }}"></script>
   <head>
 
-  <body>
-    <nav>
-      <h1>Flaskr</h1>
-      <ul>
-        {% if g.user %}
-          <li><span>{{ g.user['username'] }}</span>
-          <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
-        {% else %}
-          <li><a href="{{ url_for('auth.register') }}">Register</a>
-          <li><a href="{{ url_for('auth.login') }}">Log In</a>
-        {% endif %}
-      </ul>
+  <body class="container">
+    <nav class="navbar navbar-expand-lg bg-dark border-bottom" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand mb-0 h1" href="{{ url_for('blog.index') }}">
+          <img src="{{ url_for('static', filename='pics/baseline_rss_feed_white_24dp.png') }}" width="30" height="30" />
+          LibreBlogs
+        </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            {% if g.user %}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Toggle navigation">
+                  <span>Account</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="{{ url_for('blog.create') }}">Create</a></li>
+                  <li><a class="dropdown-item" href="#">Settings</a></li>
+                  <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Log Out</a></li>
+                </ul>
+              </li>
+             {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('auth.register') }}">
+                  Register
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('auth.login') }}">
+                  Log In
+                </a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
     </nav>
 
     <section class="content">
@@ -26,7 +51,8 @@
         {% block header %}{% endblock %}
       </header>
       {% for message in get_flashed_messages() %}
-        <div class="flash">{{ message }}</div>
+        <div class="alert alert-danger mb-0 text-center" role="alert">{{ message }}</div>
+        <br />
       {% endfor %}
       {% block content %}{% endblock %}
     </section>

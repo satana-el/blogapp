@@ -1,15 +1,17 @@
 {% extends 'layout.html' %}
 
 {% block header %}
-  <h1>{% block title %}Register{% endblock %}</h1>
+  <h1 class="text-center p-5">{% block title %}Register{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
   <form method="post">
-    <label for="username">Username</label>
-    <input name="username" id="username" required>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" required>
-    <input type="submit" value="Register">
+    <div class="mb-3 form-group text-center">
+      <input class="form-control mx-auto w-auto" name="username" id="username" placeholder="Username" required>
+      <br />
+      <input class="form-control mx-auto w-auto" type="password" name="password" id="password" placeholder="Password" required>
+      <br />
+      <button class="btn btn-custom-color" type="submit">Register</button>
+    </div>
   </form>
 {% endblock %}
