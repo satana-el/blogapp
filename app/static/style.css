@@ -3,3 +3,23 @@
   color: #ffffff;
 }
 
+.dark-mode {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.dark-mode .navbar {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+.dark-mode .list-group-item {
+    background-color: #343a40;
+    color: #ffffff;
+    border-color: #565656;
+}
+
+.dark-mode .author-name {
+    color: #aaaaaa;
+}
+

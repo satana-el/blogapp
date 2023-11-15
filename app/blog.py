@@ -6,12 +6,14 @@ from werkzeug.exceptions import abort
 from app.auth import login_required
 from app.db import get_db
 
+import bleach
+
 bp = Blueprint('blog', __name__)
 
 def get_post(id, check_author=True):
     post = get_db().execute(
         'SELECT p.id, title, body, created, author_id, username'
-        ' FROM post p JOIN user u ON p.author_id = u.id'
+        ' FROM posts p JOIN users u ON p.author_id = u.id'
         ' WHERE p.id = ?',
         (id,)
     ).fetchone()
@@ -27,11 +29,15 @@ def get_post(id, check_author=True):
 @bp.route('/')
 def index():
     db = get_db()
-    posts = db.execute(
+    posts = [dict(row) for row in db.execute(
         'SELECT p.id, title, body, created, author_id, username'
         ' FROM posts p JOIN users u ON p.author_id = u.id'
         ' ORDER BY created DESC'
-    ).fetchall()
+    ).fetchall()]
+
+    for post in posts:
+        post['body'] = bleach.clean(post['body'], tags=['p', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'br', 'span'], attributes={'*': ['class']})
+
     return render_template('blog/index.html', posts=posts)
 
 @bp.route('/create', methods=('GET', 'POST'))
@@ -67,6 +73,19 @@ def delete(id):
     db.execute('DELETE FROM post WHERE id = ?', (id,))
     db.commit()
     return redirect(url_for('blog.index'))
+
+
+@bp.route('/post/<int:post_id>')
+def post(post_id):
+    post = get_post(post_id, check_author=False)
+    
+    sanitized_content = bleach.clean(post['body'], tags=['p', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'br', 'span'], attributes={'*': ['class']})
+    
+    if post:
+        return render_template('blog/post.html', post=post, body=sanitized_content)
+    else:
+        return render_template('blog/not_found.html')
+
 
 @bp.route('/<int:id>/update', methods=('GET', 'POST'))
 @login_required

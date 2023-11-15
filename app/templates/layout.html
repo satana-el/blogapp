@@ -7,15 +7,19 @@
     <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
     <script src="{{ url_for('static', filename='bootstrap.bundle.min.js') }}"></script>
+    {% block editor %}{% endblock %}
   <head>
 
-  <body class="container">
+  <body class="dark-mode">
     <nav class="navbar navbar-expand-lg bg-dark border-bottom" data-bs-theme="dark">
       <div class="container-fluid">
         <a class="navbar-brand mb-0 h1" href="{{ url_for('blog.index') }}">
           <img src="{{ url_for('static', filename='pics/baseline_rss_feed_white_24dp.png') }}" width="30" height="30" />
           LibreBlogs
         </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             {% if g.user %}
@@ -46,7 +50,7 @@
       </div>
     </nav>
 
-    <section class="content">
+    <section class="container">
       <header>
         {% block header %}{% endblock %}
       </header>

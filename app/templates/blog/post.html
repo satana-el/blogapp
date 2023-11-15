@@ -1,0 +1,9 @@
+{% extends 'layout.html' %}
+
+{% block header %}
+<h1 class="text-center p-3">{% block title %}{{ post['title'] }}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <p>{{ body | safe }}</p>
+{% endblock %}
