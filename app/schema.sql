@@ -4,7 +4,9 @@ DROP TABLE IF EXISTS posts;
 CREATE TABLE users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   username TEXT UNIQUE NOT NULL,
-  password TEXT NOT NULL
+  password TEXT NOT NULL,
+  bio TEXT,
+  followers INTEGER DEFAULT 0
 );
 
 CREATE TABLE posts (
@@ -13,6 +15,7 @@ CREATE TABLE posts (
   created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   title TEXT NOT NULL,
   body TEXT NOT NULL,
+  likes INTEGER DEFAULT 0,
   FOREIGN KEY (author_id) REFERENCES users (id)
 );
 

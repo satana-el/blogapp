@@ -36,9 +36,10 @@ def index():
     ).fetchall()]
 
     for post in posts:
-        post['body'] = bleach.clean(post['body'], tags=['p', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'br', 'span'], attributes={'*': ['class']})
+        post['body'] = bleach.clean(post['body'], tags=['p', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'br', 'span', 'ol', 'ul', 'li'], attributes={'*': ['class']})
 
     return render_template('blog/index.html', posts=posts)
+
 
 @bp.route('/create', methods=('GET', 'POST'))
 @login_required
@@ -79,10 +80,8 @@ def delete(id):
 def post(post_id):
     post = get_post(post_id, check_author=False)
     
-    sanitized_content = bleach.clean(post['body'], tags=['p', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'br', 'span'], attributes={'*': ['class']})
-    
     if post:
-        return render_template('blog/post.html', post=post, body=sanitized_content)
+        return render_template('blog/post.html', post=post)
     else:
         return render_template('blog/not_found.html')
 

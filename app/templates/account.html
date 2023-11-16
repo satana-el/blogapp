@@ -10,7 +10,7 @@
     {% block editor %}{% endblock %}
   <head>
 
-  <body class="dark-mode">
+  <body class="dark-mode" style="height: 100vh;">
     <nav class="navbar navbar-expand-lg bg-dark border-bottom" data-bs-theme="dark">
       <div class="container-fluid">
         <a class="navbar-brand mb-0 h1" href="{{ url_for('blog.index') }}">
@@ -49,16 +49,36 @@
         </div>
       </div>
     </nav>
-
     <section class="container">
-      <header>
-        {% block header %}{% endblock %}
-      </header>
-      {% for message in get_flashed_messages() %}
-        <div class="alert alert-danger mb-0 text-center" role="alert">{{ message }}</div>
-        <br />
-      {% endfor %}
-      {% block content %}{% endblock %}
+
+      <div class="container-fluid p-1">
+        <div class="row">
+          <nav class="col-md-2 d-none d-md-block sidebar" style="background-color: #333333; height: 100vh;">
+            <div class="sidebar-sticky ">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a class="nav-link active text-light" href="#">
+                    <span data-feather="home"></span>
+                    Dashboard <span class="sr-only">(current)</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-light" href="#">
+                    <span data-feather="file"></span>
+                    Orders
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-light" href="#">
+                    <span data-feather="shopping-cart"></span>
+                    Products
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
     </section>
   </body>
 </html>

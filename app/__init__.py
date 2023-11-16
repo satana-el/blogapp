@@ -39,5 +39,8 @@ def create_app(test_config=None):
     app.register_blueprint(blog.bp)
     app.add_url_rule('/', endpoint='index')
 
+    from . import account
+    app.register_blueprint(account.bp, url_prefix='/account')
+    
     return app
 

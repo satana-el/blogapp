@@ -4,22 +4,28 @@
 }
 
 .dark-mode {
-    background-color: #1a1a1a;
-    color: #ffffff;
+  background-color: #1a1a1a;
+  color: #ffffff;
 }
 
 .dark-mode .navbar {
-    background-color: #343a40;
-    color: #ffffff;
+  background-color: #343a40;
+  color: #ffffff;
 }
 
 .dark-mode .list-group-item {
-    background-color: #343a40;
-    color: #ffffff;
-    border-color: #565656;
+  background-color: #343a40;
+  color: #ffffff;
+  border-color: #565656;
 }
 
 .dark-mode .author-name {
-    color: #aaaaaa;
+  color: #aaaaaa;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
