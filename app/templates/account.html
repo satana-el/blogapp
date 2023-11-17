@@ -49,34 +49,43 @@
         </div>
       </div>
     </nav>
-    <section class="container">
 
-      <div class="container-fluid p-1">
+    <section>
+      <div class="container-fluid">
         <div class="row">
-          <nav class="col-md-2 d-none d-md-block sidebar" style="background-color: #333333; height: 100vh;">
+          <nav class="fixed-width-sidebar d-none d-md-block sidebar" style="background-color: #212529; height: 100vh;">
             <div class="sidebar-sticky ">
-              <ul class="nav flex-column">
+              <ul class="nav flex-column h5">
                 <li class="nav-item">
-                  <a class="nav-link active text-light" href="#">
-                    <span data-feather="home"></span>
-                    Dashboard <span class="sr-only">(current)</span>
+                  <a class="nav-link active text-light" href="{{url_for('account.profile') }}">
+                    Profile
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link text-light" href="#">
-                    <span data-feather="file"></span>
-                    Orders
+                    My Blogs
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link text-light" href="#">
-                    <span data-feather="shopping-cart"></span>
-                    Products
+                    Monetization
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-light" href="#">
+                    Settings
                   </a>
                 </li>
               </ul>
             </div>
           </nav>
+          <div class="col-md-9 container p-2"> 
+            {% for message in get_flashed_messages() %}
+              <div class="alert alert-danger mb-0 text-center" role="alert">{{ message }}</div>
+              <br />
+            {% endfor %}
+            {% block content %}{% endblock %}
+      </div>
         </div>
       </div>
     </section>

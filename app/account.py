@@ -12,7 +12,7 @@ bp = Blueprint('account', __name__)
 @bp.route('/')
 @login_required
 def index():
-    return render_template('account/profile.html')
+    return redirect(url_for('account.profile'))
 
 
 @bp.route('/profile')

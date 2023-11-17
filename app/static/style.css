@@ -23,6 +23,12 @@
   color: #aaaaaa;
 }
 
+ .fixed-width-sidebar {
+  width: 180px;
+  box-sizing: border-box;
+  border-right: 1px solid #d6d4ce;
+  }
+
 html, body {
   height: 100%;
   margin: 0;
