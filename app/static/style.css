@@ -4,7 +4,7 @@
 }
 
 .dark-mode {
-  background-color: #1a1a1a;
+  background-color: #141516;
   color: #ffffff;
 }
 
@@ -23,11 +23,16 @@
   color: #aaaaaa;
 }
 
- .fixed-width-sidebar {
+.fixed-width-sidebar {
   width: 180px;
   box-sizing: border-box;
-  border-right: 1px solid #d6d4ce;
-  }
+  border-right: 1px solid #3D4244;
+ }
+
+.same-line {
+  display: inline-block;
+  margin-right: 20px; 
+}
 
 html, body {
   height: 100%;

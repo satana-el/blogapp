@@ -18,7 +18,10 @@ def index():
 @bp.route('/profile')
 @login_required
 def profile():
-    return render_template('account/profile.html')
-
-
+    db = get_db()
+    profile = db.execute(
+        "SELECT username, bio, followers FROM users WHERE id = ?",
+        (g.user['id'],)
+    ).fetchone()
+    return render_template('account/profile.html', profile=profile)
 

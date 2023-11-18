@@ -15,7 +15,7 @@
       <div class="container-fluid">
         <a class="navbar-brand mb-0 h1" href="{{ url_for('blog.index') }}">
           <img src="{{ url_for('static', filename='pics/baseline_rss_feed_white_24dp.png') }}" width="30" height="30" />
-          LibreBlogs
+          KernelNotes
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -79,13 +79,13 @@
               </ul>
             </div>
           </nav>
-          <div class="col-md-9 container p-2"> 
+          <div class="col-md-7 container p-2"> 
             {% for message in get_flashed_messages() %}
               <div class="alert alert-danger mb-0 text-center" role="alert">{{ message }}</div>
               <br />
             {% endfor %}
             {% block content %}{% endblock %}
-      </div>
+          </div>
         </div>
       </div>
     </section>
