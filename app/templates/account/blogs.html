@@ -1,0 +1,23 @@
+{% extends 'account.html' %}
+
+{% block header %}
+  <h1 class="text-center p-5">{% block title %}My Blogs{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <div class="container p-3">
+    <div class="list-group">
+      {% for post in posts %}
+        <a href="{{ url_for('blog.post', post_id=post['id']) }}" class="list-group-item list-group-item-action">
+        <div style="display: flex; align-items: center;">
+          <h2 class="mb-1" style="margin-right: 10px;">{{ post['title'] }}</h2>
+          <form action="{{ url_for('account.delete', id=post['id']) }}" method="post">
+            <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('Are you sure?');">Delete</button>
+          </form>
+        </div>
+          <p class="mb-1">{{ post['body'] | striptags | safe | truncate(150) }}</p>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
