@@ -1,0 +1,21 @@
+{% extends 'account.html' %}
+
+{% block header %}
+  <h1 class="text-center p-5">{% block title %}XMR{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <div class="p-3">
+    <div style="margin: 30px; text-align: center;">
+      <img src="{{ url_for('static', filename='/pics/xmr.webp') }}" width="50px" height="50px" />
+    </div>
+    
+    <form method="post">
+      <div class="mb-3 form-group text-center">
+        <input class="form-control mx-auto w-auto" name="address" placeholder="Monero address" required>
+        <br />
+        <button class="btn btn-custom-color" type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

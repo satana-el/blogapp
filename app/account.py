@@ -50,6 +50,52 @@ def blogs():
     return render_template('account/blogs.html', posts=posts)
 
 
+@bp.route('/btc', methods=("GET", "POST"))
+@login_required
+def btc():
+    if request.method == "POST":
+        address = request.form["address"]
+        error = None
+
+        if not address:
+            error = "Address is required."
+
+        if error is None:
+            db = get_db()
+
+            existing_record = db.execute(
+                'SELECT * FROM crypto WHERE user_id = ?',
+                (g.user['id'],)
+            ).fetchone()
+
+            if existing_record:
+                db.execute(
+                    'UPDATE crypto SET btc = ? WHERE user_id = ?',
+                    (address, g.user['id'])
+                )
+                db.commit()
+            else:
+                db.execute(
+                    'INSERT INTO crypto (user_id, btc) VALUES (?, ?)',
+                    (g.user['id'], address)
+                )
+                db.commit()
+            try:
+                # Add print statements for debugging
+                print("SQL Query:", 'UPDATE crypto SET btc = ? WHERE user_id = ?', (address, g.user['id']))
+                print("SQL Query:", 'INSERT INTO crypto (user_id, btc) VALUES (?, ?)', (g.user['id'], address))
+
+            except Exception as e:
+                print("Error:", str(e))
+                flash("An error occurred.")
+
+            return redirect(url_for('account.monetization'))
+        else:
+            flash(error)
+
+    return render_template('account/btc.html')
+
+
 @bp.route('/<int:id>/delete', methods=('POST',))
 @login_required
 def delete(id):
@@ -58,6 +104,20 @@ def delete(id):
     db.execute('DELETE FROM posts WHERE id = ?', (id,))
     db.commit()
     return redirect(url_for('account.blogs'))
+
+
+@bp.route('/monetization')
+@login_required
+def monetization():
+    db = get_db()
+
+    wallet_data = db.execute(
+        'SELECT btc, xmr FROM crypto WHERE user_id = ?', (g.user['id'],)
+    ).fetchone()
+
+    wallets = dict(wallet_data) if wallet_data else {}
+
+    return render_template('account/monetization.html', wallets=wallets)
 
 
 @bp.route('/profile')
@@ -69,4 +129,50 @@ def profile():
         (g.user['id'],)
     ).fetchone()
     return render_template('account/profile.html', profile=profile)
+
+
+@bp.route('/xmr', methods=("GET", "POST"))
+@login_required
+def xmr():
+    if request.method == "POST":
+        address = request.form["address"]
+        error = None
+
+        if not address:
+            error = "Address is required."
+
+        if error is None:
+            db = get_db()
+
+            existing_record = db.execute(
+                'SELECT * FROM crypto WHERE user_id = ?',
+                (g.user['id'],)
+            ).fetchone()
+
+            if existing_record:
+                db.execute(
+                    'UPDATE crypto SET xmr = ? WHERE user_id = ?',
+                    (address, g.user['id'])
+                )
+                db.commit()
+            else:
+                db.execute(
+                    'INSERT INTO crypto (user_id, xmr) VALUES (?, ?)',
+                    (g.user['id'], address)
+                )
+                db.commit()
+            try:
+                # Add print statements for debugging
+                print("SQL Query:", 'UPDATE crypto SET xmr = ? WHERE user_id = ?', (address, g.user['id']))
+                print("SQL Query:", 'INSERT INTO crypto (user_id, xmr) VALUES (?, ?)', (g.user['id'], address))
+
+            except Exception as e:
+                print("Error:", str(e))
+                flash("An error occurred.")
+
+            return redirect(url_for('account.monetization'))
+        else:
+            flash(error)
+
+    return render_template('account/xmr.html')
 

@@ -19,3 +19,11 @@ CREATE TABLE posts (
   FOREIGN KEY (author_id) REFERENCES users (id)
 );
 
+CREATE TABLE crypto (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL,
+  btc TEXT,
+  xmr TEXT,
+  FOREIGN KEY (user_id) REFERENCES users (id)
+);
+

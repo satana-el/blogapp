@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock %} - Blogs</title>
+    <title>{% block title %}{% endblock %} - Account</title>
     <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
     <script src="{{ url_for('static', filename='bootstrap.bundle.min.js') }}"></script>
@@ -67,7 +67,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link text-light" href="#">
+                  <a class="nav-link text-light" href="{{ url_for('account.monetization') }}">
                     Monetization
                   </a>
                 </li>
