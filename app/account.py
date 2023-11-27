@@ -34,6 +34,43 @@ def index():
     return redirect(url_for('account.profile'))
 
 
+@bp.route('/bio', methods=("GET", "POST"))
+@login_required
+def bio():
+    if request.method == "POST":
+        bio = request.form["bio"]
+        error = None
+
+        if not bio:
+            error = "Bio is required."
+
+        if error is None:
+            db = get_db()
+
+            existing_record = db.execute(
+                'SELECT bio FROM users WHERE id = ?',
+                (g.user['id'],)
+            ).fetchone()
+
+            if existing_record:
+                db.execute(
+                    'UPDATE users SET bio = ? WHERE id = ?',
+                    (bio, g.user['id'])
+                )
+            else:
+                db.execute(
+                    'INSERT INTO users (id, bio) VALUES (?, ?)',
+                    (g.user['id'], bio)
+                )
+
+            db.commit()
+            return redirect(url_for('account.monetization'))
+        else:
+            flash(error)
+
+    return render_template('account/bio.html')
+
+
 @bp.route('/blogs')
 @login_required
 def blogs():
@@ -80,14 +117,6 @@ def btc():
                     (g.user['id'], address)
                 )
                 db.commit()
-            try:
-                # Add print statements for debugging
-                print("SQL Query:", 'UPDATE crypto SET btc = ? WHERE user_id = ?', (address, g.user['id']))
-                print("SQL Query:", 'INSERT INTO crypto (user_id, btc) VALUES (?, ?)', (g.user['id'], address))
-
-            except Exception as e:
-                print("Error:", str(e))
-                flash("An error occurred.")
 
             return redirect(url_for('account.monetization'))
         else:

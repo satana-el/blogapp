@@ -28,8 +28,8 @@
                   <span>Account</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
-                  <li><a class="dropdown-item" href="{{ url_for('account.profile') }}">My Profile</a></li>
                   <li><a class="dropdown-item" href="{{ url_for('blog.create') }}">Create</a></li>
+                  <li><a class="dropdown-item" href="{{ url_for('account.profile') }}">Settings</a></li>
                   <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Log Out</a></li>
                 </ul>
               </li>
@@ -69,11 +69,6 @@
                 <li class="nav-item">
                   <a class="nav-link text-light" href="{{ url_for('account.monetization') }}">
                     Monetization
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-light" href="#">
-                    Settings
                   </a>
                 </li>
               </ul>

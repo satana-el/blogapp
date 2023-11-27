@@ -1,0 +1,16 @@
+{% extends 'account.html' %}
+
+{% block header %}
+  <h1 class="text-center p-5">{% block title %}BTC{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <div class="mb-3 form-group text-center">
+      <label class="p-3" for="bio" class="form-label"><h3>Bio:</h3></label>
+      <textarea class="form-control mx-auto" style="height: 200px; width: 500px;" name="bio" placeholder="Write something about yourself..." required></textarea>
+      <br />
+      <button class="btn btn-custom-color" type="submit">Submit</button>
+    </div>
+  </form>
+{% endblock %}

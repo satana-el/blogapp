@@ -14,9 +14,9 @@
       <td><h5 class="p-3" style="margin-right: 50px;">Bio:</h5></td>
       <td>
         {% if profile['bio'] %}
-          <h5 class="p-3">{{ profile['bio'] }}</h5>
+          <h6 class="p-3">{{ profile['bio'] }}</h6>
         {% else %}
-          <a href="#"><button class="btn btn-custom-color" style="margin-left: 15px;">Add Bio</button></a>
+        <a href="{{ url_for('account.bio') }}"><button class="btn btn-custom-color" style="margin-left: 15px;">Add Bio</button></a>
         {% endif %}
       </td>
     </tr>
