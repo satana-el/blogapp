@@ -64,7 +64,7 @@ def bio():
                 )
 
             db.commit()
-            return redirect(url_for('account.monetization'))
+            return redirect(url_for('account.profile'))
         else:
             flash(error)
 

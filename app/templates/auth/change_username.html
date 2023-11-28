@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block header %}
+  <h1 class="text-center p-5">{% block title %}Change Username{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <div class="mb-3 form-group text-center">
+      <input class="form-control mx-auto w-auto" type="password" name="password" id="password" placeholder="Password" required>
+      <br />
+      <input class="form-control mx-auto w-auto" name="username" id="username" placeholder="New Username" required>
+      <br />
+      <button class="btn btn-custom-color" type="submit">Submit</button>
+    </div>
+  </form>
+{% endblock %}

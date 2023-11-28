@@ -40,6 +40,85 @@ def load_logged_in_user():
         )
 
 
+@bp.route("/change_password", methods=("GET", "POST"))
+def change_password():
+    if request.method == "POST":
+        old = request.form["old"]
+        new = request.form["new"]
+        confirmation = request.form["confirmation"]
+        error = None
+
+        if not (old or new or confirmation):
+            error = "Please fill the required fields"
+
+        if error is None:
+            db = get_db()
+            user = db.execute(
+                "SELECT * FROM users WHERE id = ?", (g.user['id'],)
+            ).fetchone()
+
+            if check_password_hash(user["password"], old):
+                if new == confirmation:
+                    db.execute(
+                        "UPDATE users SET password = ? WHERE id = ?",
+                        (generate_password_hash(new), g.user['id']),
+                    )
+                    db.commit()
+                else:
+                    error = "Passwords do not match."
+            else:
+                error = "Incorrect password."
+
+        if error:
+            flash(error)
+            return redirect(url_for('auth.change_password'))
+
+        return redirect(url_for('account.profile'))
+    else:
+        return render_template('auth/change_password.html')
+
+
+@bp.route("/change_username", methods=("GET", "POST"))
+def change_username():
+    if request.method == "POST":
+        password = request.form["password"]
+        n_username = request.form["username"]
+        error = None
+
+        if not n_username:
+            error = "Username is required."
+        elif not password:
+            error = "Password is required."
+
+        db = get_db()
+
+        if error is None:
+            user = db.execute(
+                "SELECT * FROM users WHERE id = ?", (g.user['id'],)
+            ).fetchone()
+
+            if check_password_hash(user["password"], password):
+                try:
+                    db.execute(
+                        "UPDATE users SET username = ? WHERE id = ?",
+                        (n_username, g.user['id']),
+                    )
+                    db.commit()
+                except db.IntegrityError:
+                    error = f"User {n_username} is already registered."
+            else:
+                error = "Incorrect password."
+
+        if error:
+            flash(error)
+            return redirect(url_for('auth.change_username'))
+
+        return redirect(url_for('account.profile'))
+
+    return render_template('auth/change_username.html')
+
+
+
 @bp.route("/login", methods=("GET", "POST"))
 def login():
     if request.method == "POST":
