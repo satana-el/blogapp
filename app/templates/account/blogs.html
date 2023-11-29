@@ -11,8 +11,11 @@
         <a href="{{ url_for('blog.post', post_id=post['id']) }}" class="list-group-item list-group-item-action">
         <div style="display: flex; align-items: center;">
           <h2 class="mb-1" style="margin-right: 10px;">{{ post['title'] }}</h2>
-          <form action="{{ url_for('account.delete', id=post['id']) }}" method="post">
+          <form action="{{ url_for('blog.delete', id=post['id']) }}" method="post">
             <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('Are you sure?');">Delete</button>
+          </form>
+          <form action="{{ url_for('blog.edit', id=post['id']) }}" method="get">
+              <button class="btn btn-primary btn-sm" style="margin-left: 10px;">Edit</button>
           </form>
         </div>
           <p class="mb-1">{{ post['body'] | striptags | safe | truncate(150) }}</p>
