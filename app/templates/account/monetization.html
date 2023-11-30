@@ -6,39 +6,55 @@
 
 {% block content %}
 <div class="p-3">
-  <div>
+  <div class="m-auto">
     <h2 class="text-center p-5">Crypto</h2>
   </div>
 
-  <div class="p-3">
-    <img src="{{ url_for('static', filename='/pics/btc.webp') }}" width="50px" height="50px" />
-    <br />
-    {% if wallets['btc'] %}
-      <p>BTC Wallet: {{ wallets['btc'] }}</p>
-      <a href="{{ url_for('account.btc') }}">
-        <button class="btn btn-custom-color">Change</button>
-      </a>
-    {% else %}
-    <a href="{{ url_for('account.btc') }}">
-      <button class="btn btn-custom-color">Add wallet</button>
-    </a>
-    {% endif %}
-  </div>
-
-  <div class="p-3">
-    <img src="{{ url_for('static', filename='/pics/xmr.webp') }}" width="45px" height="45px" style="margin-left: 2px;" />
-    <br />
-    {% if wallets['xmr'] %}
-      <p>Monero Wallet: {{ wallets['xmr'] }}</p>
-      <a href="{{ url_for('account.xmr') }}">
-        <button class="btn btn-custom-color">Change</button>
-      </a>
-    {% else %}
-      <a href="{{ url_for('account.xmr') }}">
-        <button class="btn btn-custom-color">Add wallet</button>
-      </a>
-    {% endif %}
-  </div>
+  <table class="p-3 m-auto">
+    <tr>
+      <td class="crypto">
+        <img src="{{ url_for('static', filename='/pics/btc.webp') }}" width="50px" height="50px" />
+      </td class="crypto">
+      {% if wallets['btc'] %}
+        <td class="crypto">
+          <p>BTC Wallet: {{ wallets['btc'] }}</p>
+        </td class="crypto">
+        <td class="crypto">
+        <a href="{{ url_for('account.btc') }}">
+          <button class="btn btn-custom-color">Change</button>
+        </a>
+        </td class="crypto">
+      {% else %}
+        <td class="crypto">
+          <a href="{{ url_for('account.btc') }}">
+            <button class="btn btn-custom-color">Add wallet</button>
+          </a>
+        </td class="crypto">
+      {% endif %}
+    </tr>
+    
+    <tr>
+      <td class="crypto">
+        <img src="{{ url_for('static', filename='/pics/xmr.webp') }}" width="45px" height="45px" style="margin-left: 2px;" />
+      </td class="crypto">
+      {% if wallets['xmr'] %}
+        <td class="crypto">
+          <p>Monero Wallet: {{ wallets['xmr'] }}</p>
+        </td class="crypto">
+        <td class="crypto">
+          <a href="{{ url_for('account.xmr') }}">
+            <button class="btn btn-custom-color">Change</button>
+          </a>
+        </td class="crypto">
+      {% else %}
+        <td class="crypto">
+          <a href="{{ url_for('account.xmr') }}">
+            <button class="btn btn-custom-color">Add wallet</button>
+          </a>
+        </td class="crypto">
+      {% endif %}
+    </tr>
+  </table>
 </div>
 {% endblock %}
 

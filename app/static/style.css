@@ -27,11 +27,20 @@
   width: 180px;
   box-sizing: border-box;
   border-right: 1px solid #3D4244;
- }
+}
 
 .same-line {
   display: inline-block;
   margin-right: 20px; 
+}
+
+.crypto {
+  padding-left: 50px;
+}
+
+th, td {
+  padding: 15px;
+  text-align: center;
 }
 
 html, body {
