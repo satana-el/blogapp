@@ -1,5 +1,5 @@
 # kernalnotes.blog
-A minimalist bloggin website written with flask.
+A minimalist blogging website written with flask.
 
 ## Setup
 1. Install requirements<br>
