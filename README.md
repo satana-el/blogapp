@@ -45,7 +45,7 @@ The application will be accessible at `http://127.0.0.1:5000/` by default.
 3. Explore the blogging features, create, edit, and view posts at the blog section (`/blog`).
 4. Manage your account settings, including bio, profile, and monetization preferences, at the account section (`/account`).
 
-## Folder Structure
+## Directory Structure
 
 The project is organized as follows:
 ```bash
