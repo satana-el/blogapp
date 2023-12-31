@@ -7,8 +7,6 @@ Welcome to your Flask-based Blogging Website! This application allows users to c
 
 I have used flask for this project because it just renders html pages, it is low on resources. I used the app factory layout because version control is easier with it.
 
-This is my first ever project. Though I wanted to add some more things time isn't on my side. Today is the deadline so I have decided to submit it.
-
 ## Installation
 
 To set up the Flask Blogging Website, follow these steps:
