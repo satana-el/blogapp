@@ -1,4 +1,4 @@
-# <kernelnotes.blog>
+# kernelnotes.blog
 #### Video Demo:  <https://youtu.be/xEgA1NS5EgA>
 #### Description:
 A minimalist blogging website written with flask. Users can create accounts, read and write blogs.
